@@ -23,7 +23,7 @@ if not os.path.exists(newpath2):
 
 # creates xml file header, which points to the location of the schema.
 def xmlHeader():
-	xmlFile = open("Z:\partners\%s\request_%s_sf%s\ZI_%s_PersonMatch.xml", "w") % newfolder
+	xmlFile = open("Z:\partners\%s\request_%s_sf%s\ZI_%s_PersonMatch.xml", "w") % (newfolder, currentDate, newfolder2)
 	xmlFile.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n")
 	xmlFile.write("<beans xmlns=\"http://www.springframework.org/schema/beans\"\n")
 	xmlFile.write("       xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n")
@@ -60,3 +60,28 @@ def outputFolder():
 	xmlFile.write("        <constructor-arg value=\"%s\"/> <!--FOLDER TO PUT OUTPUT FILE the FILE will be named automatically with Job name Client name and date -->\n") % newpath2
 	xmlFile.write("    </bean>\n")
 
+def personMatcher():
+	inputFile = raw_input("What is the name of the input CSV file (without extension)? ")
+	xmlFile.write("    <bean id=\"personMatcher\" class=\"com.zoominfo.component.dsConfig.PersonMatcherConfig\">")
+	xmlFile.write("        <property name=\"inputDataFiles\">")
+	xmlFile.write("            <list>")
+	xmlFile.write("                <bean id=\"personMatchDataFile\" class=\"com.zoominfo.component.dsConfig.InputDataFileConfig\">")
+	xmlFile.write("                    <property name=\"filePath\" value=\"c:\partners\%s\request_%s_sf%s\%s.csv\"/> <!-- path to input company file name -->") % (newfolder, currentDate, newfolder2, inputFile)
+	xmlFile.write("                    <property name=\"hasHeader\" value=\"true\"/>")
+	xmlFile.write("                </bean>")
+	xmlFile.write("            </list>")
+	xmlFile.write("        </property>")
+	xmlFile.write("        <property name=\"columnMappings\">")
+	xmlFile.write("            <map>")
+	coNameKey = raw_input("Please enter the index of the company name column from the input file: ")
+
+while True:	
+	try: 
+		firstKey = int(coNameKey)
+	except ValueError:
+		print "This is not an integer. Please try again."
+		
+	xmlFile.write("			<entry key=\"%d\" value=\"personresumecompanyname\" />") % firstKey
+	xmlFile.write("")
+	xmlFile.write("")
+	
