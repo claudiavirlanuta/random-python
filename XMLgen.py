@@ -118,6 +118,22 @@ def Co_FN_LN():
 	thirdKey = int(lastNameKey)
 	xmlFile.write("            <entry key=\"%d\" value=\"lastname\" />\n" % thirdKey)
 
+def queryList():
+	xmlFile.write("	 <util:list id=\"queryList\">\n")
+	queries = raw_input("How many queries would you like to construct for this job? ")
+	numQueries = int(queries) - 1
+	for i in range(0, numQueries)
+	
+	#constructs one query bean.
+	xmlFile.write("        <bean class=\"com.zoominfo.dataservices.config.QueryConfig\">\n")
+	xmlFile.write("            <property name=\"name\" value=\"query1\"/>\n")
+	xmlFile.write("")
+	xmlFile.write("")
+	xmlFile.write("")
+	xmlFile.write("")
+	xmlFile.write("")
+	xmlFile.write("")
+	xmlFile.write("")
 xmlHeader()
 jobName()
 clientName()
