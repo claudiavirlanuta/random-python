@@ -123,12 +123,13 @@ def queryList():
 	queries = raw_input("How many queries would you like to construct for this job? ")
 	numQueries = int(queries) - 1
 	for i in range(0, numQueries)
-	
-	#constructs one query bean.
-	xmlFile.write("        <bean class=\"com.zoominfo.dataservices.config.QueryConfig\">\n")
-	xmlFile.write("            <property name=\"name\" value=\"query1\"/>\n")
-	xmlFile.write("")
-	xmlFile.write("")
+		#constructs one query bean.
+		xmlFile.write("        <bean class=\"com.zoominfo.dataservices.config.QueryConfig\">\n")
+		queryName = raw_input("Please enter a name for query number %d: " %i)
+		xmlFile.write("            <property name=\"name\" value=\"%s\"/>\n" % queryName)
+		queryUrl = raw_input("Please paste the URL for query number %d: " %i)
+		xmlFile.write("            <property name=\"query\" value=\"%s\"/>\n")
+		xmlFile.write("        </bean>")
 	xmlFile.write("")
 	xmlFile.write("")
 	xmlFile.write("")
